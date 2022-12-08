@@ -6,7 +6,7 @@ import utilStyles from '../styles/utils.module.css';
 export default function Home() {
   return (
     <Layout home>
-      <Head>9
+      <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>

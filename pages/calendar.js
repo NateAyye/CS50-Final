@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Layout from "../components/layout";
 import format from "date-fns/format";
 import getDay from "date-fns/getDay";
@@ -51,6 +52,9 @@ const events = [
 export default function MyCalendar() {
     return (
         <Layout calendar>
+            <Head>
+                <title>Calendar</title>
+            </Head>
             <Calendar 
                 localizer={localizer}
                 events={events}
