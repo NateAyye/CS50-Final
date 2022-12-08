@@ -10,6 +10,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import enUS from 'date-fns/locale/en-US'
+import Popup from 'react-popup';
 
 const locales = {
   'en-US': enUS,
@@ -51,6 +52,8 @@ const events = [
 
 
 export default function MyCalendar() {
+
+    
     return (
         <Layout calendar>
             <Head>
@@ -61,7 +64,7 @@ export default function MyCalendar() {
                 events={events}
                 startAccessor="start"
                 endAccessor="end" 
-                style={{height: 600, margin:"5px"}} 
+                style={{height: 600, margin:"5px"}}
             />
         </Layout>
     )
