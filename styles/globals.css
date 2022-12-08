@@ -10,17 +10,25 @@
   color: var(--main-color);
 }
 
-.rbc-time-gutter {
-  width: 50px;
+.rbc-day-bg {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+
+.rbc-time-slot {
+  background-color:#292a2d;
 }
 
 .rbc-timeslot-group {
-  background-color:#292a2d ;
+  background-color: #989c9e;
 }
 
-.rbc-row {
-  background-color: #292a2d;
+
+.rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell {
+  border: 1px solid #ddd
 }
+
 
 html,
 body {
