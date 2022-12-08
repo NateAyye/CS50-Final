@@ -10,6 +10,18 @@
   color: var(--main-color);
 }
 
+.rbc-time-gutter {
+  width: 50px;
+}
+
+.rbc-timeslot-group {
+  background-color:#292a2d ;
+}
+
+.rbc-row {
+  background-color: #292a2d;
+}
+
 html,
 body {
   padding: 0;
