@@ -60,7 +60,7 @@ export default function MyCalendar() {
                 events={events}
                 startAccessor="start"
                 endAccessor="end" 
-                style={{height: 600, margin:"5px"}}   
+                style={{height: 600, margin:"5px"}} 
             />
         </Layout>
     )
