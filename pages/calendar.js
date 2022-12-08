@@ -1,4 +1,4 @@
-
+import Layout from "../components/layout";
 import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
@@ -50,7 +50,7 @@ const events = [
 
 export default function MyCalendar() {
     return (
-        <>
+        <Layout calendar>
             <Calendar 
                 localizer={localizer}
                 events={events}
@@ -58,6 +58,6 @@ export default function MyCalendar() {
                 endAccessor="end" 
                 style={{height: 600, margin:"50px"}}   
             />
-        </>
+        </Layout>
     )
 }
