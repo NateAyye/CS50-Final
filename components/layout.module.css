@@ -10,6 +10,10 @@
     align-items: center;
   }
   
+.main {
+  width: 1000px;
+}
+
   .backToHome {
     margin: 3rem 0 0;
   }
