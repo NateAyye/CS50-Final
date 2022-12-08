@@ -6,6 +6,10 @@
     margin: 1rem 0;
 } 
   
+.bottomLink {
+  display: flex;
+}
+
 .headingXl {
   font-size: 2rem;
   line-height: 1.3;

@@ -20,8 +20,10 @@ export default function Home() {
           ( This is a sample website - you’ll be waiting building a site like this on{' '}
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
-        <Link href='/posts/first-post'>First Post</Link>
-        <Link href='/calendar'>Calendar</Link>
+        <div className={utilStyles.bottomLink}>
+          <Link href='/posts/first-post'>First Post</Link>
+          <Link href='/calendar'>Calendar</Link>
+        </div>
       </section>
     </Layout>
   );
