@@ -59,6 +59,7 @@
 }
 
 .btnContainer {
+    width: auto;
     display: flex;
     flex-direction: row;
 
