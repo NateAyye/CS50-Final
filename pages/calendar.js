@@ -62,6 +62,13 @@ const events = [
 ]
 
 
+function onSave() {
+    const startTime = document.getElementById('startTime')
+    const endTime = document.getElementById('endTime')
+    const tips = document.getElementById('tips').value
+    events.push({title: ("Tips:" + {tips}), start: Date.now(), end: Date.now(), allDay: true})
+}
+
 
 export default function MyCalendar() {
 
@@ -78,10 +85,11 @@ export default function MyCalendar() {
                 endAccessor="end" 
                 style={{height: 600, margin:"5px"}}
                 popup
+                onSelectSlot={() => setOpenModal(!openModal)}
                 selectable
             />
-            <button onClick={() => setOpenModal(!openModal)}>Modal</button>
-            <Modal open={openModal} />
+            <button className="modalBtn" onClick={() => setOpenModal(!openModal)}>Modal</button>
+            <Modal open={openModal} onSave={onSave} onClose={() => setOpenModal(false)}/>
         </Layout>
     )
 }
