@@ -10,6 +10,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import enUS from 'date-fns/locale/en-US'
+import Modal from '../components/modal/Modal'
 
 const locales = {
   'en-US': enUS,
@@ -63,6 +64,8 @@ const events = [
 
 
 export default function MyCalendar() {
+
+    const [openModal, setOpenModal] = useState(false)
     return (
         <Layout calendar>
             <Head>
@@ -77,6 +80,8 @@ export default function MyCalendar() {
                 popup
                 selectable
             />
+            <button onClick={() => setOpenModal(!openModal)}>Modal</button>
+            <Modal open={openModal} />
         </Layout>
     )
 }
