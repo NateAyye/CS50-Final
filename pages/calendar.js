@@ -62,18 +62,21 @@ const events = [
 ]
 
 
-function onSave() {
-    const startTime = document.getElementById('startTime')
-    const endTime = document.getElementById('endTime')
-    const tips = document.getElementById('tips').value
-    events.push({title: ("Tips:" + {tips}), start: Date.now(), end: Date.now(), allDay: true})
-    setOpenModal(false)
-}
 
 
 export default function MyCalendar() {
 
     const [openModal, setOpenModal] = useState(false)
+
+    function onSave() {
+        const startTime = document.getElementById('startTime')
+        const endTime = document.getElementById('endTime')
+        const tips = document.getElementById('tips').value
+        events.push({title: (`Tips: $${tips}`), start: Date.now(), end: Date.now(), allDay: true})
+        setOpenModal(false)
+    }
+    
+
     return (
         <Layout calendar>
             <Head>
