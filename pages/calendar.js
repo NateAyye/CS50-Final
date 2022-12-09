@@ -67,6 +67,7 @@ function onSave() {
     const endTime = document.getElementById('endTime')
     const tips = document.getElementById('tips').value
     events.push({title: ("Tips:" + {tips}), start: Date.now(), end: Date.now(), allDay: true})
+    setOpenModal(false)
 }
 
 
