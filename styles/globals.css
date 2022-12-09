@@ -3,7 +3,7 @@
   --main-color: #c0c8d1;
   --calendar-bg-color: #292a2d;
 }
-/* 
+
 .rbc-month-view {
   border-radius: 0.5em;
   background-color:var(--calendar-bg-color);
@@ -27,7 +27,12 @@
 
 .rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell {
   border: 1px solid #ddd
-} */
+}
+
+.rbc-button-link.rbc-show-more {
+  border-radius: .25rem;
+  background-color: hsla(0,0%,100%,0.05);
+}
 
 .calendar-container {
   width: 800px;
