@@ -1,20 +1,40 @@
 :root {
   --main-bg-color: #202023;
   --main-color: #c0c8d1;
-  --calendar-bg-color: #292a2d;
+  --calendar-bg-color: #4b4b4e;
+  --calendar-off-range-bg-color: #c0c8d1;
+  --calendar-color: #171718;
 }
 
 .rbc-month-view {
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
   background-color:var(--calendar-bg-color);
   color: var(--main-color);
 }
 
 .rbc-day-bg {
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 0.5rem;
 }
 
+.rbc-day-bg.rbc-off-range-bg {
+  color: var(--calendar-color);
+  background-color: var(--calendar-off-range-bg-color);
+}
+
+.rbc-day-bg.rbc-button-link {
+  color: var(--calendar-color)
+}
+.rbc-date-cell {
+  color: rgb(27, 26, 26) !important;
+}
+.rbc-off-range {
+  color: rgb(114, 116, 102) !important;
+}
+
+.rbc-month-row {
+  border-top: 0px solid #ddd !important;
+}
 
 .rbc-time-slot {
   background-color:#292a2d;
@@ -91,12 +111,6 @@
 }
 .rbc-off-range-bg {
   background: #F8F8F8;
-}
-.rbc-date-cell {
-  color: #444 !important;
-}
-.rbc-off-range {
-  color: #777 !important;
 }
 
 html,

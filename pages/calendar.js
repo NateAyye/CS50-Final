@@ -61,6 +61,12 @@ const events = [
 ]
 
 
+const today = document.getElementsByClassName('rbc-today')[0]
+
+today.addEventListener('click', () => {
+    window.alert("today was clicked")
+})
+
 export default function MyCalendar() {
 
     
