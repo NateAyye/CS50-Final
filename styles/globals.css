@@ -20,6 +20,17 @@
   background-color: #464057d3 !important;
 }
 
+@media (max-width: 500px) {
+  .calendar {
+    height: 500px !important;
+  }
+
+  .rbc-button-link {
+    pointer-events: none;
+  }
+  
+}
+
 .rbc-day-bg {
   border: 1px solid #ddd;
   border-radius: 0.5rem;

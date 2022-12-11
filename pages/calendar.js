@@ -5,26 +5,30 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useCallback, useState, useRef } from "react";
+import React, { useCallback, useState, useRef, useMemo } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import enUS from 'date-fns/locale/en-US'
 import Modal from '../components/modal/Modal'
+import { globalizeLocalizer } from 'react-big-calendar'
+import globalize from 'globalize'
+
+const localizer = globalizeLocalizer(globalize)
 
 const locales = {
   'en-US': enUS,
 }
 
 
-const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
-});
+// const localizer = dateFnsLocalizer({
+//     format,
+//     parse,
+//     startOfWeek,
+//     getDay,
+//     locales,
+// });
 
 
 const events = [
@@ -87,12 +91,29 @@ export default function MyCalendar() {
 
     const onSelectSlot = ({ action, slots /*, ...props */ }) => {
         console.log("onSelectSlot");
-        if (action === "click") {
+        if (action === "click" || "doubleClick") {
           console.log("click");
+          console.log(window.screen.width)
           setOpenModal(!openModal)
         }
+
+        if (action === "select") {
+
+        }
         return false;
-      };
+    };
+
+    const { formats } = useMemo(
+        () => ({
+          formats: {
+            weekdayFormat: (date, culture, localizer) =>
+              localizer.format(date, 'ddd', culture),
+          },
+        }),
+        []
+      )
+
+      
 
     return (
         <Layout
@@ -103,12 +124,18 @@ export default function MyCalendar() {
                 <title>Tip Calendar</title>
             </Head>
             <Calendar 
+                formats={formats}
                 views={[Views.MONTH, Views.AGENDA]}
                 localizer={localizer}
                 events={events}
                 startAccessor="start"
                 endAccessor="end" 
-                style={{height: 600, margin:"5px"}}
+                className="calendar"
+                longPressThreshold={5}
+                style={{
+                    height: 600,
+                    margin:"5px",
+                    }}
                 popup
                 onSelectSlot={onSelectSlot}
                 onSelectEvent={eventSelect}

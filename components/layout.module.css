@@ -27,7 +27,7 @@
   margin: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .main {
     margin: 1rem;
   }
