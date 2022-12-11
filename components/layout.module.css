@@ -13,6 +13,25 @@
   padding: .5em 1.5em;
 }
 
+@media (max-width: 500px) {
+  .header {
+    padding: 0.5rem 0;
+
+  }
+
+  .main {
+    margin: 1rem;
+  }
+
+  .togglebutton {
+    padding: 0.1rem 0.25rem;
+  }
+
+  .title {
+    font-size: x-large;
+  }
+}
+
 .title {
   margin: 0px;
 }
@@ -26,12 +45,6 @@
 }
 .main::content {
   margin: 0;
-}
-
-@media (max-width: 500px) {
-  .main {
-    margin: 1rem;
-  }
 }
 
 .middletitle {

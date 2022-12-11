@@ -14,6 +14,7 @@ import enUS from 'date-fns/locale/en-US'
 import Modal from '../components/modal/Modal'
 import { globalizeLocalizer } from 'react-big-calendar'
 import globalize from 'globalize'
+import { set } from "date-fns";
 
 const localizer = globalizeLocalizer(globalize)
 
@@ -74,33 +75,55 @@ export default function MyCalendar() {
 
     const [openModal, setOpenModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
+    const [startTime, setStartTime] = useState()
+    const [endTime, setEndTime] = useState()
+    const [tipAmount, setTipAmount] = useState()
+    const [eventSelectStart, setEventSelectStart] = useState(Date())
+    const [eventSelectEnd, setEventSelectEnd] = useState(Date())
 
     function onSave() {
-        const startTime = document.getElementById('startTime')
-        const endTime = document.getElementById('endTime')
+        setStartTime(document.getElementById('startTime'))
+        setEndTime(document.getElementById('endTime'))
         const tips = document.getElementById('tips').value
-        events.push({title: (`Tips: $${tips}`), start: Date.now(), end: Date.now(), allDay: true})
+        setTipAmount(tips)
+        events.push({title: (`Tips: $${tips}`), start: Date.now(), end: Date.now(), allDay: true, startTime: startTime, endTime: endTime})
         setOpenModal(false)
     }
     
-    function eventSelect() {
+    function eventSelect({ id, title, start, end, startTime, endTime}) {
+        setEventSelectEnd(end)
+        setEventSelectStart(start)
+        if(startTime) {
+            console.log(startTime.value)
+
+        }
         setOpenModal(!openModal)
         setEditModal(!editModal)
     }
     
 
-    const onSelectSlot = ({ action, slots /*, ...props */ }) => {
-        console.log("onSelectSlot");
+    const onSelectSlot = ({ action, slots, start, end /*, ...props */ }) => {
+        const today = new Date().getDate()
+        const eventDay = new Date(start).getDate()
         if (action === "click") {
-          console.log("click");
-          console.log(window.screen.width)
-          setOpenModal(!openModal)
+            if(today === eventDay) {
+                setOpenModal(!openModal)
+            }
         }
 
         if (action === "select") {
         }
         return false;
     };
+
+    function onModalClose() {
+        setOpenModal(false)
+        setEditModal(false)
+    }
+
+    function editingModal() {
+        setEditModal(false)
+    }
 
     const { formats } = useMemo(
         () => ({
@@ -140,11 +163,19 @@ export default function MyCalendar() {
                 onSelectEvent={eventSelect}
                 selectable
             />
-            <button className="modalBtn" onClick={() => setOpenModal(!openModal)}>Modal</button>
-            <Modal editModal={editModal} open={openModal} onSave={onSave} onClose={() => {
-                setOpenModal(false)
-                setEditModal(false)
-                }}/>
+            <Modal 
+                editingModal={editingModal} 
+                eventSelectStart={eventSelectStart} 
+                eventSelectEnd={eventSelectEnd} 
+                startTime={startTime} 
+                endTime={endTime} 
+                tipAmount={tipAmount} 
+                editModal={editModal} 
+                open={openModal} 
+                onSave={onSave} 
+                onClose={onModalClose}
+                
+            />
         </Layout>
     )
 }

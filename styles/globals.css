@@ -30,7 +30,8 @@
 
 @media (max-width: 500px) {
   .calendar {
-    height: 500px !important;
+    height: 550px !important;
+    margin: 1em 0 !important
   }
 
   .rbc-event-content {
@@ -39,6 +40,14 @@
 
   .rbc-button-link {
     pointer-events: none;
+  }
+
+  .rbc-toolbar {
+    flex-direction: column;
+  }
+
+  .rbc-toolbar-label {
+    padding: 0.3rem 2rem !important;
   }
   
 }
