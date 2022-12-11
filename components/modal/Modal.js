@@ -12,14 +12,20 @@ const Modal = ({open, onClose, onSave, editModal}) => {
           <div className={modalStyles.modalRight}>
               <p onClick={onClose} className={modalStyles.closeBtn}>X</p>
               <div className={modalStyles.content}>
-                <label for="startTime">Start Time</label>
-                <input id='startTime' className={modalStyles.startTime} type="time" placeholder="Start time" />
+                <div className={modalStyles.flexcontent}>
+                  <label for="startTime">Start Time</label>
+                  <input id='startTime' className={modalStyles.startTime} type="time" placeholder="Start time" />
+                </div>
                 <br/>
-                <label for="endTime">End Time</label>
-                <input id='endTime' className={modalStyles.endTime} type="time" placeholder="Start time" />
+                <div className={modalStyles.flexcontent}>
+                  <label for="endTime">End Time</label>
+                  <input id='endTime' className={modalStyles.endTime} type="time" placeholder="Start time" />
+                </div>
                 <br/>
-                <label for="endTime">Tips</label>
-                <input id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" />
+                <div className={modalStyles.flexcontent}>
+                  <label for="tips">Tips</label>
+                  <input id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" />
+                </div>
               </div>
               <div className={modalStyles.btnContainer}>
                 {editModal ? (

@@ -16,13 +16,25 @@
   color: var(--main-color) !important;
 }
 
+.calendar {
+  margin: 1em 4em !important;
+}
 .rbc-active {
   background-color: #464057d3 !important;
+}
+
+.rbc-event-content {
+  text-overflow: clip !important;
+  font-size:medium;
 }
 
 @media (max-width: 500px) {
   .calendar {
     height: 500px !important;
+  }
+
+  .rbc-event-content {
+    font-size:x-small;
   }
 
   .rbc-button-link {
@@ -123,6 +135,7 @@
 }
 .rbc-event {
   border-radius: 3px;
+  margin: 0rem 0 0.1rem 0  !important;
 }
 .rbc-show-more {
   font-weight: normal;

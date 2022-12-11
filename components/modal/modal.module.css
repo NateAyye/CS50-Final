@@ -16,11 +16,23 @@
     position: fixed;
     top: 40%;
     left: 50%;
+    border-radius: 1em;
     transform: translate(-50%, -50%);
     display: flex;
     background-color: #FFF;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.95);
 }
+
+.flexcontent label {
+    font-size: small;
+}
+
+.startTime, .endTime, .tipAmount {
+    min-width: none;
+    max-width: 150px !important;
+    min-height: 20px !important;
+    max-height: 25px;
+  }
 
 .modalImage {
     margin:auto;
@@ -37,13 +49,21 @@
         width: 75px;
     }
 
+    .content {
+        padding: 1rem 0 0 0 !important;
+    }
 
+}
+
+.flexcontent {
+    display: flex;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     margin-top: 1rem;
     padding: .5rem 2rem;
@@ -61,7 +81,6 @@
 }
 
 .btnContainer {
-    padding: 15px;
     width: auto;
     display: flex;
     flex-direction: row;

@@ -91,14 +91,13 @@ export default function MyCalendar() {
 
     const onSelectSlot = ({ action, slots /*, ...props */ }) => {
         console.log("onSelectSlot");
-        if (action === "click" || "doubleClick") {
+        if (action === "click") {
           console.log("click");
           console.log(window.screen.width)
           setOpenModal(!openModal)
         }
 
         if (action === "select") {
-
         }
         return false;
     };
@@ -131,7 +130,7 @@ export default function MyCalendar() {
                 startAccessor="start"
                 endAccessor="end" 
                 className="calendar"
-                longPressThreshold={500}
+                longPressThreshold={10}
                 style={{
                     height: 600,
                     margin:"5px",
