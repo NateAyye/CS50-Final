@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Views } from "react-big-calendar";
 import Layout from "../components/layout";
 import format from "date-fns/format";
 import getDay from "date-fns/getDay";
@@ -24,6 +25,7 @@ const localizer = dateFnsLocalizer({
     getDay,
     locales,
 });
+
 
 const events = [
     {
@@ -67,6 +69,7 @@ const events = [
 export default function MyCalendar() {
 
     const [openModal, setOpenModal] = useState(false)
+    const [editModal, setEditModal] = useState(false)
 
     function onSave() {
         const startTime = document.getElementById('startTime')
@@ -76,13 +79,19 @@ export default function MyCalendar() {
         setOpenModal(false)
     }
     
+    function eventSelect() {
+        setOpenModal(!openModal)
+        setEditModal(!editModal)
+    }
+    
 
     return (
         <Layout calendar>
             <Head>
-                <title>Calendar</title>
+                <title>Tip Calendar</title>
             </Head>
             <Calendar 
+                views={[Views.MONTH, Views.AGENDA]}
                 localizer={localizer}
                 events={events}
                 startAccessor="start"
@@ -90,10 +99,14 @@ export default function MyCalendar() {
                 style={{height: 600, margin:"5px"}}
                 popup
                 onSelectSlot={() => setOpenModal(!openModal)}
+                onSelectEvent={eventSelect}
                 selectable
             />
             <button className="modalBtn" onClick={() => setOpenModal(!openModal)}>Modal</button>
-            <Modal open={openModal} onSave={onSave} onClose={() => setOpenModal(false)}/>
+            <Modal editModal={editModal} open={openModal} onSave={onSave} onClose={() => {
+                setOpenModal(false)
+                setEditModal(false)
+                }}/>
         </Layout>
     )
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import nft from '../../public/images/ai-bg-art.png'
 import modalStyles from './modal.module.css'
 
-const Modal = ({open, onClose, onSave}) => {
+const Modal = ({open, onClose, onSave, editModal}) => {
   if(!open) return null
   return (
     <div className={modalStyles.overlay}>
@@ -22,8 +22,11 @@ const Modal = ({open, onClose, onSave}) => {
                 <input id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" />
               </div>
               <div className={modalStyles.btnContainer}>
-                <button className={modalStyles.editBtn}>Edit</button>
-                <button onClick={onSave} className={modalStyles.saveBtn}>Save</button>
+                {editModal ? (
+                  <button className={modalStyles.editBtn}>Edit</button>
+                ):(
+                  <button onClick={onSave} className={modalStyles.saveBtn}>Save</button>
+                )}
               </div>
           </div>
       </div>
