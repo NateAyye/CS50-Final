@@ -86,7 +86,10 @@ export default function MyCalendar() {
     
 
     return (
-        <Layout calendar>
+        <Layout
+            calendar
+            title={"Calendar"}
+            >
             <Head>
                 <title>Tip Calendar</title>
             </Head>
