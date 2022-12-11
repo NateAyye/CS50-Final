@@ -112,6 +112,7 @@ export default function MyCalendar() {
         }
 
         if (action === "select") {
+            setOpenModal(!openModal)
         }
         return false;
     };
