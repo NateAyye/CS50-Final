@@ -131,7 +131,7 @@ export default function MyCalendar() {
                 startAccessor="start"
                 endAccessor="end" 
                 className="calendar"
-                longPressThreshold={5}
+                longPressThreshold={500}
                 style={{
                     height: 600,
                     margin:"5px",
