@@ -21,10 +21,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.5rem 5rem;
+  margin: 0.5rem 4rem;
 }
 .main::content {
   margin: 0;
+}
+
+@media (max-width: 600px) {
+  .main {
+    margin: 1rem;
+  }
 }
 
 .middletitle {

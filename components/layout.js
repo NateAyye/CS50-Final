@@ -21,14 +21,16 @@ export default function Layout({ children, home, calendar, title, description })
         </Head>
         <header className={styles.header}>
             <>
-             <Image
-                priority
-                src="/images/profile.jpg"
-                className={styles.borderCircle}
-                height={60}
-                width={60}
-                alt=""
-             />
+              <Link href={"/"}>
+                <Image
+                  priority
+                  src="/images/profile.jpg"
+                  className={styles.borderCircle}
+                  height={60}
+                  width={60}
+                  alt=""
+                />
+              </Link>
              <div className={styles.middletitle}>
              <h1 className={styles.title}>{title}</h1>
              {description && <h3 className={styles.title}>{description}</h3>}
@@ -40,7 +42,7 @@ export default function Layout({ children, home, calendar, title, description })
              </div>
             </>
         </header>
-        <main className={styles.main}>{children}</main>
+        <main>{children}</main>
         {!home && (
             <div className={styles.backToHome}>
             <Link href="/">← Back to home</Link>

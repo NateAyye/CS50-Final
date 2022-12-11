@@ -85,6 +85,15 @@ export default function MyCalendar() {
     }
     
 
+    const onSelectSlot = ({ action, slots /*, ...props */ }) => {
+        console.log("onSelectSlot");
+        if (action === "click") {
+          console.log("click");
+          setOpenModal(!openModal)
+        }
+        return false;
+      };
+
     return (
         <Layout
             calendar
@@ -101,7 +110,7 @@ export default function MyCalendar() {
                 endAccessor="end" 
                 style={{height: 600, margin:"5px"}}
                 popup
-                onSelectSlot={() => setOpenModal(!openModal)}
+                onSelectSlot={onSelectSlot}
                 onSelectEvent={eventSelect}
                 selectable
             />

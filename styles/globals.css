@@ -12,6 +12,13 @@
   color: var(--main-color);
 }
 
+.rbc-toolbar button {
+  color: var(--main-color) !important;
+}
+
+.rbc-active {
+  background-color: #464057d3 !important;
+}
 
 .rbc-day-bg {
   border: 1px solid #ddd;
@@ -83,7 +90,6 @@
 }
 .rbc-toolbar .rbc-toolbar-label {
   font-size: 20px;
-  color: #333;
 }
 .rbc-header {
   padding: 4px 10px;
@@ -120,10 +126,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  line-height: 1.6;
-  font-size: 18px;
+  line-height: 1.15;
+  font-size: 17px;
   background-color: var(--main-bg-color);
-  color: var(--main-color) ;
+  color: var(--main-color) !important;
 }
 
 * {
