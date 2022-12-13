@@ -17,7 +17,8 @@
 }
 
 .calendar {
-  margin: 1em 4em !important;
+  margin:auto !important; 
+  width: 700px !important;
 }
 .rbc-active {
   background-color: #464057d3 !important;
@@ -28,10 +29,11 @@
   font-size:medium;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .calendar {
     height: 550px !important;
-    margin: 1em 0 !important
+    margin: 1em 0 !important;
+    width:auto !important;
   }
 
   .rbc-event-content {

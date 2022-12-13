@@ -25,7 +25,7 @@ const Modal = ({tipAmount, open, onClose, onSave, editModal, editingModal, endTi
                 <div className={modalStyles.flexcontent}>
                   <label for="startTime">Start Time</label>
                   {editModal ? (
-                    <label id='startTime' className={modalStyles.startTime} type="time" placeholder="Start time" ><strong>{startTime.value}</strong></label>
+                    (startTime && <label id='startTime' className={modalStyles.startTime} type="time" placeholder="Start time" ><strong>{startTime.value}</strong></label>)
                   ):(
                     <input id='startTime' className={modalStyles.startTime} type="time" placeholder="Start time" />
                   )}
@@ -34,7 +34,7 @@ const Modal = ({tipAmount, open, onClose, onSave, editModal, editingModal, endTi
                 <div className={modalStyles.flexcontent}>
                   <label for="endTime">End Time</label>
                   {editModal ? (
-                    <label id='endTime' className={modalStyles.endTime} type="time" placeholder="Start time"><strong>{endTime.value}</strong></label>
+                    (endTime && <label id='endTime' className={modalStyles.endTime} type="time" placeholder="Start time"><strong>{endTime.value}</strong></label>)
 
                   ):(
                     <input id='endTime' className={modalStyles.endTime} type="time" placeholder="Start time" />
@@ -44,7 +44,7 @@ const Modal = ({tipAmount, open, onClose, onSave, editModal, editingModal, endTi
                 <div className={modalStyles.flexcontent}>
                   <label for="tips">Tips</label>
                   {editModal ? (
-                    <label id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" >&emsp;$<strong>{tipAmount}</strong></label>
+                    (tipAmount && <label id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" >&emsp;$<strong>{tipAmount}</strong></label>)
                   ):(
                     <input id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" />
                   )}

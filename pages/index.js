@@ -1,5 +1,6 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import Head from 'next/head';
+import { Avatar } from '@nextui-org/react';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { Avatar, Navbar, useTheme } from '@nextui-org/react';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ const name = 'Nathan Cuevas';
 export const siteTitle = 'CS50 Final Project';
 
 export default function Layout({ children, home, calendar, title, description }) {
+  const {isDark} = useTheme()
   return (
     <div>
         <Head>
@@ -20,9 +22,13 @@ export default function Layout({ children, home, calendar, title, description })
         <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <header className={styles.header}>
-            <>
+            <Navbar
+              variant={"sticky"}
+              shouldHideOnScroll
+              isBordered={isDark}
+            >
               <Link href={"/"}>
-                <Image
+                <Avatar
                   priority
                   src="/images/profile.jpg"
                   className={styles.borderCircle}
@@ -40,7 +46,7 @@ export default function Layout({ children, home, calendar, title, description })
                 <span className={styles.bar}></span>
                 <span className={styles.bar}></span>
              </div>
-            </>
+            </Navbar>
         </header>
         <main>{children}</main>
         {!home && (
