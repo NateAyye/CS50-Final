@@ -175,7 +175,6 @@ export default function MyCalendar() {
                 open={openModal} 
                 onSave={onSave} 
                 onClose={onModalClose}
-                
             />
         </Layout>
     )
