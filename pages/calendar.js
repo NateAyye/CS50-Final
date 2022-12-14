@@ -5,7 +5,7 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useCallback, useState, useRef, useMemo } from "react";
+import React, { useEffext, useCallback, useState, useRef, useMemo, useEffect } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
@@ -15,6 +15,9 @@ import Modal from '../components/modal/Modal'
 import { globalizeLocalizer } from 'react-big-calendar'
 import globalize from 'globalize'
 import { set } from "date-fns";
+import { PrismaClient} from '@prisma/client'
+
+const prisma = new PrismaClient();
 
 const localizer = globalizeLocalizer(globalize)
 
@@ -70,8 +73,18 @@ const events = [
 
 
 
+export async function getServerSideProps() {
+    const events = await prisma.events.findMany();
+    console.log(events)
 
-export default function MyCalendar() {
+    return {
+        props: {
+            events: JSON.stringify(events)
+        }
+    }
+}
+
+export default function MyCalendar({events}) {
 
     const [openModal, setOpenModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
@@ -80,13 +93,17 @@ export default function MyCalendar() {
     const [tipAmount, setTipAmount] = useState()
     const [eventSelectStart, setEventSelectStart] = useState(Date())
     const [eventSelectEnd, setEventSelectEnd] = useState(Date())
-
-    function onSave() {
+    const [event, setEvent] = useState(events)
+    
+    // console.log(JSON.parse(event))
+    
+    async function onSave(data, e) {
         setStartTime(document.getElementById('startTime'))
         setEndTime(document.getElementById('endTime'))
         const tips = document.getElementById('tips').value
         setTipAmount(tips)
-        events.push({title: (`Tips: $${tips}`), start: Date.now(), end: Date.now(), allDay: true, startTime: startTime, endTime: endTime})
+        const events1 = JSON.stringify(event)
+        setEvent([...events1, {title: (`Tips: $${tips}`),description: "hello everyone", start: Date.now(), end: Date.now(), allDay: true, startTime: startTime, endTime: endTime}])
         setOpenModal(false)
     }
     
@@ -95,7 +112,6 @@ export default function MyCalendar() {
         setEventSelectStart(start)
         if(startTime) {
             console.log(startTime.value)
-
         }
         setOpenModal(!openModal)
         setEditModal(!editModal)
@@ -112,7 +128,7 @@ export default function MyCalendar() {
         }
 
         if (action === "select") {
-            setOpenModal(!openModal)
+
         }
         return false;
     };
@@ -138,6 +154,8 @@ export default function MyCalendar() {
 
       
 
+
+
     return (
         <Layout
             calendar
@@ -150,7 +168,7 @@ export default function MyCalendar() {
                 formats={formats}
                 views={[Views.MONTH, Views.AGENDA]}
                 localizer={localizer}
-                events={events}
+                events={JSON.parse(event)}
                 startAccessor="start"
                 endAccessor="end" 
                 className="calendar"
@@ -179,3 +197,5 @@ export default function MyCalendar() {
         </Layout>
     )
 }
+
+
