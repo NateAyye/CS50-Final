@@ -27,6 +27,8 @@ export default function Home() {
         <div className={utilStyles.bottomLink}>
           <Link href='/posts/first-post'>First Post</Link>
           <Link href='/calendar'>Calendar</Link>
+          <Link href='/api/users'>Users</Link>
+
         </div>
       </section>
     </Layout>

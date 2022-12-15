@@ -14,5 +14,5 @@ export default async (req, res) => {
         data: contactData
     })
 
-    res.json({message: 'hello world'})
+    res.status(200).json({message: 'hello world'})
 }
