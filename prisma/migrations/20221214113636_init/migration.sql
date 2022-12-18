@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Events" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" INT NOT NULL PRIMARY KEY AUTOINCREMENT ID,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "start" DATETIME NOT NULL,

@@ -95,7 +95,7 @@ export default function MyCalendar({events}) {
     const [eventSelectEnd, setEventSelectEnd] = useState(Date())
     const [event, setEvent] = useState(events)
     
-    // console.log(JSON.parse(event))
+    console.log(JSON.parse(events))
     
     async function onSave(data, e) {
         setStartTime(document.getElementById('startTime'))
@@ -127,9 +127,6 @@ export default function MyCalendar({events}) {
             }
         }
 
-        if (action === "select") {
-
-        }
         return false;
     };
 
@@ -168,7 +165,7 @@ export default function MyCalendar({events}) {
                 formats={formats}
                 views={[Views.MONTH, Views.AGENDA]}
                 localizer={localizer}
-                events={JSON.parse(event)}
+                events={JSON.parse(events)}
                 startAccessor="start"
                 endAccessor="end" 
                 className="calendar"
