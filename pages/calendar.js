@@ -16,6 +16,7 @@ import { globalizeLocalizer } from 'react-big-calendar'
 import globalize from 'globalize'
 import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize)
+import prisma from "../lib/prisma";
 
 const locales = {
   'en-US': enUS,
@@ -68,8 +69,25 @@ const events = [
 ]
 
 
-export default function MyCalendar() {
+export async function getStaticProps(){
+    const events = await prisma.events.findMany({
+        where: {
+            userId: 1,
+        }
+    })
+    const data = await JSON.stringify(events)
+    console.log(JSON.parse(data));
 
+    return {
+        props: {
+            data,
+        }
+    }
+}
+
+export default function MyCalendar({data}) {
+    const userEvents = JSON.parse(data)
+    console.log(userEvents[0]);
     const [openModal, setOpenModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
     const [startTime, setStartTime] = useState()
@@ -77,7 +95,7 @@ export default function MyCalendar() {
     const [tipAmount, setTipAmount] = useState()
     const [eventSelectStart, setEventSelectStart] = useState(Date())
     const [eventSelectEnd, setEventSelectEnd] = useState(Date())
-    const [event, setEvent] = useState(events)
+    const [event1, setEvent] = useState(userEvents)
     
     async function onEventSave(data, e) {
         setStartTime(document.getElementById('startTime'))
@@ -131,7 +149,7 @@ export default function MyCalendar() {
       )
 
       
-
+    console.log(userEvents[0].eventStart);
 
 
     return (
@@ -146,7 +164,19 @@ export default function MyCalendar() {
                 formats={formats}
                 views={[Views.MONTH, Views.AGENDA]}
                 localizer={localizer}
-                events={event}
+                events={userEvents.map( (event) => {
+                    return {
+                        id: event.id,
+                        title: event.title,
+                        description: event.description,
+                        start: Date(event.eventStart),
+                        end: Date(event.eventEnd),
+                        allDay: event.allDay,
+                        shiftStart: event.shiftStart,
+                        shiftEnd: event.shiftEnd,
+                        userId: event.userId,
+                    }
+                })}
                 startAccessor="start"
                 endAccessor="end" 
                 className="calendar"
