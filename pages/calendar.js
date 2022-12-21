@@ -154,7 +154,6 @@ export default function MyCalendar({data}) {
     const [posts, setPosts] = useState([])
     useEffect(() => {
         const fetchPosts = async () => {
-            const supabase = require('../utils/supabase')
             const { data } = await supabase.from('users').select('*')
             setPosts(data)
             setisLoading(false)
