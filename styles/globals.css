@@ -4,12 +4,40 @@
   --calendar-bg-color: #4b4b4e;
   --calendar-off-range-bg-color: #c0c8d1;
   --calendar-color: #171718;
+  --colors-cyan600: #06b7db;
+  --colors-pink600: #ff4ecd;
+  --colors-blue600: #0072f5;
+  --cool-gradient:linear-gradient(112deg, 
+    var(--colors-cyan600) -63.59%, 
+    var(--colors-pink600) -20.3%, 
+    var(--colors-blue600) 70.46%);
+}
+
+#__next {
+  height: 100vmax;
+}
+
+body::-webkit-scrollbar {
+  width: .4em;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
 }
 
 .rbc-month-view {
   border-radius: 0.5rem;
   background-color:var(--calendar-bg-color);
   color: var(--main-color);
+}
+
+.rbc-toolbar {
+  background-color: var(--main-bg-color)
 }
 
 .rbc-toolbar button {
@@ -21,12 +49,16 @@
   width: 700px !important;
 }
 .rbc-active {
-  background-color: #464057d3 !important;
+  background-color: var(--cool-gradient);
 }
 
 .rbc-event-content {
   text-overflow: clip !important;
   font-size:medium;
+}
+
+.rbc-today {
+  background-color: var(--main-color)!important;
 }
 
 @media (max-width: 700px) {
@@ -52,6 +84,11 @@
     padding: 0.3rem 2rem !important;
   }
   
+}
+
+
+.nextui-avatar-bg {
+  color: #6c449e !important;
 }
 
 .rbc-day-bg {
@@ -105,7 +142,7 @@
 }
 .btn {
   cursor: pointer;
-  border: 0px !important
+  border: 0px !important;
 }
 .btn-control {
   color: #fff !important;
@@ -157,6 +194,8 @@
 
 html,
 body {
+  width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { Avatar } from '@nextui-org/react';
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle, name } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       title={"Home Page"}
       >
       <Head>
-        <title>{siteTitle}</title>
+        <title>{siteTitle} | By: {name}</title>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Hello, <br/>
@@ -27,8 +27,6 @@ export default function Home() {
         <div className={utilStyles.bottomLink}>
           <Link href='/posts/first-post'>First Post</Link>
           <Link href='/calendar'>Calendar</Link>
-          <Link href='/api/users'>Users</Link>
-
         </div>
       </section>
     </Layout>

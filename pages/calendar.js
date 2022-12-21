@@ -15,10 +15,6 @@ import Modal from '../components/modal/Modal'
 import { globalizeLocalizer } from 'react-big-calendar'
 import globalize from 'globalize'
 import { set } from "date-fns";
-import { PrismaClient} from '@prisma/client'
-
-const prisma = new PrismaClient();
-
 const localizer = globalizeLocalizer(globalize)
 
 const locales = {
@@ -66,25 +62,13 @@ const events = [
     {
         title: "Christmas",
         allDay: false,
-        start: new Date(2022,11,25),
-        end: new Date(2022, 11, 25)
+        start: new Date(2022,11,26),
+        end: new Date(2022, 11, 26)
     }
 ]
 
 
-
-export async function getServerSideProps() {
-    const events = await prisma.events.findMany();
-    console.log(events)
-
-    return {
-        props: {
-            events: JSON.stringify(events)
-        }
-    }
-}
-
-export default function MyCalendar({events}) {
+export default function MyCalendar() {
 
     const [openModal, setOpenModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
@@ -95,15 +79,12 @@ export default function MyCalendar({events}) {
     const [eventSelectEnd, setEventSelectEnd] = useState(Date())
     const [event, setEvent] = useState(events)
     
-    console.log(JSON.parse(events))
-    
-    async function onSave(data, e) {
+    async function onEventSave(data, e) {
         setStartTime(document.getElementById('startTime'))
         setEndTime(document.getElementById('endTime'))
         const tips = document.getElementById('tips').value
         setTipAmount(tips)
-        const events1 = JSON.stringify(event)
-        setEvent([...events1, {title: (`Tips: $${tips}`),description: "hello everyone", start: Date.now(), end: Date.now(), allDay: true, startTime: startTime, endTime: endTime}])
+        setEvent(...event ,[{title: (`Tips: $${tips}`),description: "hello everyone", start: Date.now(), end: Date.now(), allDay: true, startTime: startTime, endTime: endTime}])
         setOpenModal(false)
     }
     
@@ -165,7 +146,7 @@ export default function MyCalendar({events}) {
                 formats={formats}
                 views={[Views.MONTH, Views.AGENDA]}
                 localizer={localizer}
-                events={JSON.parse(events)}
+                events={event}
                 startAccessor="start"
                 endAccessor="end" 
                 className="calendar"
@@ -188,7 +169,7 @@ export default function MyCalendar({events}) {
                 tipAmount={tipAmount} 
                 editModal={editModal} 
                 open={openModal} 
-                onSave={onSave} 
+                onSave={onEventSave} 
                 onClose={onModalClose}
             />
         </Layout>

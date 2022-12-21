@@ -17,8 +17,5 @@
     "react-dom": "18.2.0",
     "sqlite": "^4.1.2",
     "sqlite3": "^5.1.4"
-  },
-  "devDependencies": {
-    "prisma": "^4.7.1"
   }
 }
