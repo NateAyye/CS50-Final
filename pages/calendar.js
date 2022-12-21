@@ -17,7 +17,6 @@ import globalize from 'globalize'
 import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize)
 import prisma from "../lib/prisma";
-import supabase from '../utils/supabase'
 
 const locales = {
   'en-US': enUS,
