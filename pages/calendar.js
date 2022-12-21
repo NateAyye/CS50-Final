@@ -69,7 +69,7 @@ const events = [
 ]
 
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
     const events = await prisma.events.findMany({
         where: {
             userId: 1,
