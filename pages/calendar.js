@@ -148,20 +148,6 @@ export default function MyCalendar({data}) {
         []
       )
 
-      
-
-    const [isLoading, setisLoading] = useState(true)
-    const [posts, setPosts] = useState([])
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const { data } = await supabase.from('users').select('*')
-            setPosts(data)
-            setisLoading(false)
-        }
-        fetchPosts()
-        console.log(posts)
-    }, [])
-
     return (
         <Layout
             calendar
