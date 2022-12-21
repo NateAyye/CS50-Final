@@ -5,7 +5,7 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useEffext, useCallback, useState, useRef, useMemo, useEffect } from "react";
+import React, { useCallback, useState, useRef, useMemo, useEffect } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
@@ -17,11 +17,11 @@ import globalize from 'globalize'
 import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize)
 import prisma from "../lib/prisma";
+import supabase from '../utils/supabase'
 
 const locales = {
   'en-US': enUS,
 }
-
 
 // const localizer = dateFnsLocalizer({
 //     format,
@@ -70,13 +70,14 @@ const events = [
 
 
 export async function getServerSideProps(){
+    const { data1 } = await supabase.from('users').select('*')
+    console.log(JSON.stringify(data1))
     const events = await prisma.events.findMany({
         where: {
             userId: 1,
         }
     })
-    const data = await JSON.stringify(events)
-    console.log(JSON.parse(data));
+    const data = JSON.stringify(events)
 
     return {
         props: {
@@ -87,7 +88,6 @@ export async function getServerSideProps(){
 
 export default function MyCalendar({data}) {
     const userEvents = JSON.parse(data)
-    console.log(userEvents[0]);
     const [openModal, setOpenModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
     const [startTime, setStartTime] = useState()
@@ -149,8 +149,19 @@ export default function MyCalendar({data}) {
       )
 
       
-    console.log(userEvents[0].eventStart);
 
+    const [isLoading, setisLoading] = useState(true)
+    const [posts, setPosts] = useState([])
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const supabase = require('../utils/supabase')
+            const { data } = await supabase.from('users').select('*')
+            setPosts(data)
+            setisLoading(false)
+        }
+        fetchPosts()
+        console.log(posts)
+    }, [])
 
     return (
         <Layout
