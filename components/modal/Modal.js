@@ -23,7 +23,7 @@ const Modal = ({tipAmount, open, onClose, onSave, editModal, editingModal, endTi
                   </div>
                 )}
                 <div className={modalStyles.flexcontent}>
-                  <label for="startTime">Start Time</label>
+                  <label htmlFor="startTime">Start Time</label>
                   {editModal ? (
                     (startTime && <label id='startTime' className={modalStyles.startTime} type="time" placeholder="Start time" ><strong>{startTime.value.toString()}</strong></label>)
                   ):(
@@ -32,7 +32,7 @@ const Modal = ({tipAmount, open, onClose, onSave, editModal, editingModal, endTi
                 </div>
                 <br/>
                 <div className={modalStyles.flexcontent}>
-                  <label for="endTime">End Time</label>
+                  <label htmlFor="endTime">End Time</label>
                   {editModal ? (
                     (endTime && <label id='endTime' className={modalStyles.endTime} type="time" placeholder="Start time"><strong>{endTime.value.toString()}</strong></label>)
 
@@ -42,7 +42,7 @@ const Modal = ({tipAmount, open, onClose, onSave, editModal, editingModal, endTi
                 </div>
                 <br/>
                 <div className={modalStyles.flexcontent}>
-                  <label for="tips">Tips</label>
+                  <label htmlFor="tips">Tips</label>
                   {editModal ? (
                     (tipAmount && <label id='tips' className={modalStyles.tipAmount} type="number" placeholder="Tip" >&emsp;$<strong>{tipAmount.toString()}</strong></label>)
                   ):(
