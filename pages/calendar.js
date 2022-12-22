@@ -75,9 +75,9 @@ const events = [
 export async function getServerSideProps() {
   var results = [];
   try {
-    const response = await axios.get("http://cs-50-final-nu.vercel.app/api/events");
-    console.log(response.data);
-    results = response.data;
+    const response = await axios.get("https://cs-50-final-nu.vercel.app/api/events");
+    console.log(response.data.data);
+    results = response.data.data;
   } catch (error) {
     console.error(error);
   }
