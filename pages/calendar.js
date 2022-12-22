@@ -17,6 +17,7 @@ import globalize from 'globalize'
 import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize)
 import prisma from "../lib/prisma";
+import axios from "axios";
 
 const locales = {
   'en-US': enUS,
@@ -69,24 +70,23 @@ const events = [
 
 
 export async function getServerSideProps(){
-    const { data1 } = await supabase.from('users').select('*')
-    console.log(JSON.stringify(data1))
-    const events = await prisma.events.findMany({
-        where: {
-            userId: 1,
-        }
-    })
-    const data = JSON.stringify(events)
+    var results = []
+    axios.get('http://localhost:3000/api/events').then((res) => {
+        console.log(res.data.data)
+        results['events'] = res.data.data
+    }).catch((err) => {
+        console.log(err)
+    }).finally()
 
     return {
         props: {
-            data,
+            data: results,
         }
     }
 }
 
 export default function MyCalendar({data}) {
-    const userEvents = JSON.parse(data)
+    const userEvents = data
     const [openModal, setOpenModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
     const [startTime, setStartTime] = useState()
