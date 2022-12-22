@@ -8,7 +8,7 @@ export default async function handler(req, res) {
           userId: 1,
       }
     })
-    return res.status(200).json({data: events})
+    res.status(200).send({data: events})
   } else {
     res.status(404).json({ message: 'Hello to the post message'})
   }
