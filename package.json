@@ -12,6 +12,7 @@
     "axios": "^1.2.1",
     "date-fns": "^2.29.3",
     "next": "latest",
+    "postgres": "^3.3.2",
     "react": "18.2.0",
     "react-big-calendar": "^1.5.2",
     "react-calendar": "^4.0.0",
