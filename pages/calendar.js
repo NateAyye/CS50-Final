@@ -115,6 +115,11 @@ export default function MyCalendar({ data, session }) {
         setOpenModal(!openModal);
       }
     }
+    if (action === "select") {
+      if (today === eventDay) {
+        setOpenModal(!openModal);
+      }
+    }
 
     return false;
   };

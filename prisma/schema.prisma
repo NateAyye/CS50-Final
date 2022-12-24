@@ -10,13 +10,14 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  name     String
-  password String
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String?
   username String?
   userIcon String?
-  events   Events[]
+  userId   String? @db.Uuid
+  users    users?  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
 }
@@ -32,7 +33,6 @@ model Events {
   shiftEnd    DateTime @db.Time(6)
   userId      Int?
   userUid     String   @db.Uuid
-  user        User?    @relation(fields: [userId], references: [id])
   users       users    @relation(fields: [userUid], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
@@ -251,9 +251,19 @@ model users {
   mfa_factors                 mfa_factors[]
   sessions                    sessions[]
   Events                      Events[]
+  User                        User[]
+  profiles                    profiles[]
 
   @@index([instance_id])
   @@schema("auth")
+}
+
+model profiles {
+  id    String @db.Uuid
+  email String @id @db.VarChar
+  users users  @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@schema("public")
 }
 
 enum aal_level {
