@@ -49,7 +49,7 @@ export async function getServerSideProps(ctx) {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/events", {
+      "https://cs-50-final-nu.vercel.app/api/events", {
         body: session,
       }
     );
