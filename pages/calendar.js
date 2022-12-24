@@ -22,8 +22,8 @@ import { globalizeLocalizer } from "react-big-calendar";
 import globalize from "globalize";
 import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize);
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import axios from "axios";
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
 const locales = {
   "en-US": enUS,
@@ -45,27 +45,29 @@ export async function getServerSideProps(ctx) {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  console.log(session);
+  // console.log(session);
+
   try {
-    const response = await axios.get(
-      "https://cs-50-final-nu.vercel.app/api/events", {
-        body: { session }
+    const response = await axios.post(
+      "http://localhost:3000/api/events", {
+        body: session,
       }
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
     results = response.data.data;
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
   }
 
   return {
     props: {
       data: results,
+      session,
     },
   };
 }
 
-export default function MyCalendar({ data }) {
+export default function MyCalendar({ data, session }) {
   const userEvents = data;
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);

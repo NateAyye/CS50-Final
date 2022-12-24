@@ -2,6 +2,7 @@ import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import Profile from '/components/profile/profile'
+import supabase from '/utils/supabase'
 
 const LoginPage = ( ) => {
   const supabaseClient = useSupabaseClient();
@@ -10,7 +11,7 @@ const LoginPage = ( ) => {
 
   useEffect(() => {
     async function loadData() {
-      const { data } = await supabaseClient.from("user").select("*");
+      const { data } = await supabase.from("Events").select("*");
       setData(data);
     }
     // Only run query once user is logged in.
@@ -36,7 +37,7 @@ const LoginPage = ( ) => {
       <p>user:</p>
       <pre>{JSON.stringify(user, null, 2)}</pre>
       <p>client-side data fetching with RLS</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <pre>{JSON.stringify(data , null, 2)}</pre>
       <Profile />
     </>
   );
