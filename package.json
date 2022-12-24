@@ -8,6 +8,9 @@
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.10",
     "@prisma/client": "^4.8.0",
+    "@supabase/auth-helpers-nextjs": "^0.5.2",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.2.1",
     "axios": "^1.2.1",
     "date-fns": "^2.29.3",

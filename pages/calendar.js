@@ -23,6 +23,7 @@ import globalize from "globalize";
 import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize);
 import axios from "axios";
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
 const locales = {
   "en-US": enUS,
@@ -36,46 +37,21 @@ const locales = {
 //     locales,
 // });
 
-const events = [
-  {
-    title: "Confrence",
-    start: new Date(2022, 11, 20),
-    end: new Date(2022, 11, 25),
-  },
-  {
-    title: "working",
-    start: new Date(2022, 11, 20),
-    end: new Date(2022, 11, 25),
-  },
-  {
-    title: "Meeting",
-    start: new Date(2022, 11, 10),
-    end: new Date(2022, 11, 15),
-  },
-  {
-    title: "Christmas",
-    allDay: false,
-    start: new Date(2022, 11, 25),
-    end: new Date(2022, 11, 25),
-  },
-  {
-    title: "Christmas",
-    allDay: false,
-    start: new Date(2022, 11, 25),
-    end: new Date(2022, 11, 25),
-  },
-  {
-    title: "Christmas",
-    allDay: false,
-    start: new Date(2022, 11, 26),
-    end: new Date(2022, 11, 26),
-  },
-];
-
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   var results = [];
+  // Create authenticated Supabase Client
+  const supabase = createServerSupabaseClient(ctx);
+  // Check if we have a session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  console.log(session);
   try {
-    const response = await axios.get("https://cs-50-final-nu.vercel.app/api/events");
+    const response = await axios.get(
+      "https://cs-50-final-nu.vercel.app/api/events", {
+        body: { session }
+      }
+    );
     console.log(response.data.data);
     results = response.data.data;
   } catch (error) {
