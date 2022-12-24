@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
     const events = await prisma.events.findMany({
       where: {
-          userUid: data.body.user.id,
+          userId: 1,
       }
     })
     res.status(200).send({ data: events });
