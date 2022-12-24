@@ -56,7 +56,7 @@ export async function getServerSideProps(ctx) {
     // console.log(response.data.data);
     results = response.data.data;
   } catch (error) {
-    // console.error(error.response);
+    console.error(error.response);
   }
 
   return {
