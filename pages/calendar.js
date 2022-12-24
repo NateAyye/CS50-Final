@@ -148,17 +148,17 @@ export default function MyCalendar({ data, session }) {
         views={[Views.MONTH, Views.AGENDA]}
         localizer={localizer}
         events={userEvents.map((event) => {
-          return {
+          return ({
             id: event.id,
             title: event.title,
             description: event.description,
-            start: Date(event.eventStart),
-            end: Date(event.eventEnd),
+            start: Date.parse(event.eventStart),
+            end: Date.parse(event.eventEnd),
             allDay: event.allDay,
             shiftStart: event.shiftStart,
             shiftEnd: event.shiftEnd,
             userId: event.userId,
-          };
+          })
         })}
         startAccessor="start"
         endAccessor="end"

@@ -25,10 +25,10 @@ model Events {
   title       String
   description String?
   allDay      Boolean  @default(false)
-  eventStart  DateTime @db.Time()
-  eventEnd    DateTime @db.Time()
-  shiftStart  DateTime
-  shiftEnd    DateTime
+  eventStart  DateTime @db.Timestamptz()
+  eventEnd    DateTime @db.Timestamptz()
+  shiftStart  DateTime @db.Time()
+  shiftEnd    DateTime @db.Time()
   user        User?    @relation(fields: [userId], references: [id])
   userId      Int?
   userUid     String   @db.Uuid
