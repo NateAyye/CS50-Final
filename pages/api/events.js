@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const {session} = req.body
     const events = await prisma.events.findMany({
       where: {
-          userId: session.id,
+          userId: 1,
       }
     })
     
