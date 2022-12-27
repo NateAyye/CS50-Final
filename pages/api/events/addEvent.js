@@ -1,5 +1,5 @@
 import { getTime } from 'date-fns';
-import {prisma} from '/lib/prisma'
+import prisma from '/lib/prisma'
 import supabase from "/utils/supabase";
 
 export default async function handler(req, res) {
