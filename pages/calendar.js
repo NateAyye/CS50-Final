@@ -49,7 +49,7 @@ export async function getServerSideProps(ctx) {
 
   try {
     const response = await axios.post(
-      "https://cs-50-final-nu.vercel.app/api/events", {
+      "http://localhost:3000/api/events", {
         body: session,
       }
     );
@@ -82,18 +82,27 @@ export default function MyCalendar({ data, session }) {
     setStartTime(document.getElementById("startTime"));
     setEndTime(document.getElementById("endTime"));
     const tips = document.getElementById("tips").value;
-    setTipAmount(tips);
-    setEvent(...event, [
-      {
-        title: `Tips: $${tips}`,
-        description: "hello everyone",
-        start: Date.now(),
-        end: Date.now(),
-        allDay: true,
-        startTime: startTime,
-        endTime: endTime,
-      },
-    ]);
+    var events = [];
+    try {
+      const response = await axios.post(
+        "https://cs-50-final-nu.vercel.app/api/events/add_event", {
+          body: {
+            userUid: session.user.id,
+            title: `Tips: $${tips}`,
+            description: " ",
+            start: Date(),
+            end: Date(),
+            allDay: true,
+            startTime: startTime.value,
+            endTime: endTime.value,
+          },
+        }
+      );
+      // console.log(response.data.data);
+      events = response.data.data;
+    } catch (error) {
+      console.error(error.response);
+    }
     setOpenModal(false);
   }
 

@@ -23,17 +23,16 @@ model User {
 }
 
 model Events {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   description String?
-  allDay      Boolean  @default(false)
-  eventStart  DateTime @db.Timestamptz(6)
-  eventEnd    DateTime @db.Timestamptz(6)
-  shiftStart  DateTime @db.Time(6)
-  shiftEnd    DateTime @db.Time(6)
-  userId      Int?
-  userUid     String   @db.Uuid
-  users       users    @relation(fields: [userUid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  allDay      Boolean   @default(false)
+  eventStart  DateTime  @db.Timestamptz(6)
+  eventEnd    DateTime  @db.Timestamptz(6)
+  shiftStart  DateTime  @db.Time(6)
+  shiftEnd    DateTime  @db.Time(6)
+  userUid     String?   @db.Uuid
+  users       profiles? @relation(fields: [userUid], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
 }
@@ -250,18 +249,21 @@ model users {
   identities                  identities[]
   mfa_factors                 mfa_factors[]
   sessions                    sessions[]
-  Events                      Events[]
   User                        User[]
-  profiles                    profiles[]
+  profiles                    profiles?
 
   @@index([instance_id])
   @@schema("auth")
 }
 
 model profiles {
-  id    String @db.Uuid
-  email String @id @db.VarChar
-  users users  @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id        String   @unique @db.Uuid
+  email     String   @id @db.VarChar
+  name      String?
+  alt_name  String?
+  user_Icon String?
+  Events    Events[]
+  users     users    @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
 }
