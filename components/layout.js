@@ -6,7 +6,7 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
 export const name = "Nathan Cuevas";
-export const siteTitle = "CS50 Final Project";
+export const siteTitle = "Tip-Gro";
 
 export default function Layout({
   children,
@@ -15,6 +15,7 @@ export default function Layout({
   title,
   description,
   session,
+  siteTitle,
 }) {
   const { isDark } = useTheme();
   return (
@@ -25,7 +26,8 @@ export default function Layout({
           name="description"
           content="Learn how to build a personal website using Next.js"
         />
-        <meta name="og:title" content={siteTitle} />
+
+        <title>{siteTitle ? siteTitle : "Tip-Gro"}</title>
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>

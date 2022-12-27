@@ -19,6 +19,7 @@ export default function Home() {
       home
       title={pageTitle}
       session={session}
+      siteTitle={title}
       >
       <Head>
         <title>{title}</title>

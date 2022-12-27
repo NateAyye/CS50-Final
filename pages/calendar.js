@@ -49,7 +49,8 @@ export async function getServerSideProps(ctx) {
 
   try {
     const response = await axios.post(
-      "https://cs-50-final-nu.vercel.app/api/events", {
+      "https://cs-50-final-nu.vercel.app/api/events",
+      {
         body: session,
       }
     );
@@ -85,7 +86,8 @@ export default function MyCalendar({ data, session }) {
     var events = [];
     try {
       const response = await axios.post(
-        "https://cs-50-final-nu.vercel.app/api/events/addEvent", {
+        "https://cs-50-final-nu.vercel.app/api/events/addEvent",
+        {
           body: {
             userUid: session.user.id,
             title: `Tips: $${tips}`,
@@ -155,16 +157,13 @@ export default function MyCalendar({ data, session }) {
   );
 
   return (
-    <Layout calendar title={"Calendar"}>
-      <Head>
-        <title>Tip Calendar</title>
-      </Head>
+    <Layout calendar title={"Calendar"} siteTitle={"Tip-Gro | Calendar"}>
       <Calendar
         formats={formats}
         views={[Views.MONTH, Views.AGENDA]}
         localizer={localizer}
         events={userEvents.map((event) => {
-          return ({
+          return {
             id: event.id,
             title: event.title,
             description: event.description,
@@ -174,7 +173,7 @@ export default function MyCalendar({ data, session }) {
             shiftStart: event.shiftStart,
             shiftEnd: event.shiftEnd,
             userId: event.userId,
-          })
+          };
         })}
         startAccessor="start"
         endAccessor="end"
