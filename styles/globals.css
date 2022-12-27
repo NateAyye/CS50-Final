@@ -17,6 +17,13 @@
   height: 100vmax;
 }
 
+section p {
+  padding: 1rem;
+  border: 3px solid #789fd688;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
 body::-webkit-scrollbar {
   width: .4em;
 }
@@ -216,7 +223,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 img {

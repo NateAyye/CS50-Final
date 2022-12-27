@@ -1,7 +1,8 @@
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
-import Profile from '/components/profile/profile'
+import Profile from "/components/profile/profile";
+import styles from '/components/login/login.module.css'
 
 const LoginPage = () => {
   const supabaseClient = useSupabaseClient();
@@ -19,22 +20,20 @@ const LoginPage = () => {
 
   if (!user)
     return (
-      <Auth
-        redirectTo="http://localhost:3000/"
-        appearance={{ theme: ThemeSupa }}
-        supabaseClient={supabaseClient}
-        providers={["google", "github"]}
-        socialLayout="horizontal"
-      />
+      <div className={styles.loginForm}>
+        <Auth
+          redirectTo="https://cs-50-final-nu.vercel.app/"
+          appearance={{ theme: ThemeSupa }}
+          supabaseClient={supabaseClient}
+          providers={[]}
+          socialLayout="horizontal"
+        />
+      </div>
     );
 
   return (
     <>
       <button onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
-      <p>user:</p>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <p>client-side data fetching with RLS</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
       <Profile />
     </>
   );

@@ -1,36 +1,25 @@
-import Head from 'next/head';
-import Layout, { siteTitle, name } from '../components/layout';
-import Login from '/components/login/login'
-import Register from '/components/register/register'
-import { useState } from 'react'
-import Footer from '/components/footer/footer'
+import Head from "next/head";
+import Layout, { siteTitle, name } from "../components/layout";
+import Login from "/components/login/login";
+import Register from "/components/register/register";
+import { useState } from "react";
+import Footer from "/components/footer/footer";
 
 export default function Home() {
-  const [session, setSession] = useState(true)
-  const title = siteTitle + ' | By: ' + name
-  var pageTitle = 'Home Page'
+  const [session, setSession] = useState(true);
+  const title = siteTitle + " | By: " + name;
+  var pageTitle = "Home Page";
   if (session) {
-    pageTitle = 'Login'
+    pageTitle = "Login";
   } else {
-    pageTitle = 'Register'
+    pageTitle = "Register";
   }
   return (
-    <Layout 
-      home
-      title={pageTitle}
-      session={session}
-      siteTitle={title}
-      >
+    <Layout home title={"Tip-Gro"} session={session} siteTitle={title}>
       <Head>
         <title>{title}</title>
       </Head>
-      {
-        session ? (
-            <Login />
-        ) :(
-            <Register />
-        )
-      }
+      <Login />
       <Footer />
     </Layout>
   );

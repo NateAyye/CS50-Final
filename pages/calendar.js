@@ -86,7 +86,7 @@ export default function MyCalendar({ data, session }) {
     var events = [];
     try {
       const response = await axios.post(
-        "https://cs-50-final-nu.vercel.app/api/events/addEvent",
+        "http://localhost:3000/api/events/addEvent",
         {
           body: {
             userUid: session.user.id,

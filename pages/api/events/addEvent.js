@@ -30,7 +30,6 @@ try {
 
 
   res.status(200).send({ data: event });
-  return event;
 } catch (err) {
   console.log(err);
 }

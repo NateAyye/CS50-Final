@@ -5,8 +5,24 @@
     letter-spacing: -0.05rem;
     margin: 1rem 0;
 } 
+
+.bottomLink a {
+  color: var(--main-color);
+  background-color: var(--main-background-color);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out
+}
+
+.bottomLink a:hover {
+  color: var(--main-bg-color) !important;
+  background-color: var(--main-color);
   
+}
+
 .bottomLink {
+
   display: flex;
   justify-content: space-evenly;
 }
