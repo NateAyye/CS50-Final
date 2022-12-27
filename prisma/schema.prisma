@@ -23,7 +23,7 @@ model User {
 }
 
 model Events {
-  id          Int       @id @default(autoincrement())
+  id          Int       @id @unique @default(autoincrement())
   title       String
   description String?
   allDay      Boolean   @default(false)
@@ -250,7 +250,6 @@ model users {
   mfa_factors                 mfa_factors[]
   sessions                    sessions[]
   User                        User[]
-  profiles                    profiles?
 
   @@index([instance_id])
   @@schema("auth")
@@ -263,7 +262,6 @@ model profiles {
   alt_name  String?
   user_Icon String?
   Events    Events[]
-  users     users    @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
 }

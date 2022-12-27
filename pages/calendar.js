@@ -78,14 +78,14 @@ export default function MyCalendar({ data, session }) {
   const [eventSelectEnd, setEventSelectEnd] = useState(Date());
   const [event, setEvent] = useState(userEvents);
 
-  async function onEventSave(data, e) {
+  async function onEventSave() {
     setStartTime(document.getElementById("startTime"));
     setEndTime(document.getElementById("endTime"));
     const tips = document.getElementById("tips").value;
     var events = [];
     try {
       const response = await axios.post(
-        "https://cs-50-final-nu.vercel.app/api/events/add_event", {
+        "https://cs-50-final-nu.vercel.app/api/events/addEvent", {
           body: {
             userUid: session.user.id,
             title: `Tips: $${tips}`,
@@ -100,10 +100,12 @@ export default function MyCalendar({ data, session }) {
       );
       // console.log(response.data.data);
       events = response.data.data;
+      console.log(events);
+      setOpenModal(false);
+      location.reload();
     } catch (error) {
       console.error(error.response);
     }
-    setOpenModal(false);
   }
 
   function eventSelect({ id, title, start, end, startTime, endTime }) {
