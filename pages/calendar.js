@@ -1,60 +1,34 @@
-import Head from "next/head";
 import { Views } from "react-big-calendar";
 import Layout from "../components/layout";
-import format from "date-fns/format";
-import getDay from "date-fns/getDay";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import React, {
-  useCallback,
-  useState,
-  useRef,
-  useMemo,
-  useEffect,
-} from "react";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import React, { useState, useMemo } from "react";
+import { Calendar } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import enUS from "date-fns/locale/en-US";
 import Modal from "../components/modal/Modal";
 import { globalizeLocalizer } from "react-big-calendar";
 import globalize from "globalize";
-import { set } from "date-fns";
 const localizer = globalizeLocalizer(globalize);
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import axios from "axios";
 
-const locales = {
-  "en-US": enUS,
-};
-
-// const localizer = dateFnsLocalizer({
-//     format,
-//     parse,
-//     startOfWeek,
-//     getDay,
-//     locales,
-// });
+const locales = { "en-US": enUS, };
 
 export async function getServerSideProps(ctx) {
   var results = [];
   // Create authenticated Supabase Client
   const supabase = createServerSupabaseClient(ctx);
   // Check if we have a session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  // console.log(session);
+  const {data: { session } } = await supabase.auth.getSession();
 
   try {
+    //* Make a post request to our own internal API and send the user session data with it to grab all the events to that user
     const response = await axios.post(
       "https://cs-50-final-nu.vercel.app/api/events",
       {
         body: session,
       }
     );
-    // console.log(response.data.data);
     results = response.data.data;
   } catch (error) {
     console.error(error.response);
@@ -77,7 +51,6 @@ export default function MyCalendar({ data, session }) {
   const [tipAmount, setTipAmount] = useState();
   const [eventSelectStart, setEventSelectStart] = useState(Date());
   const [eventSelectEnd, setEventSelectEnd] = useState(Date());
-  const [event, setEvent] = useState(userEvents);
 
   async function onEventSave() {
     setStartTime(document.getElementById("startTime"));

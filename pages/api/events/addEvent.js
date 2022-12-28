@@ -1,11 +1,9 @@
-import { getTime } from 'date-fns';
 import prisma from '/lib/prisma'
-import supabase from "/utils/supabase";
 
 export default async function handler(req, res) {
 if (req.method == 'POST') {
   const {body} = await req.body;
-  console.log(body);
+  
   const start_hr_min = await body.startTime.split(':');
   const end_hr_min = await body.endTime.split(':');
   const shiftEnd = new Date()

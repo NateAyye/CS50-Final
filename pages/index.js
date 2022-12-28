@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Layout, { siteTitle, name } from "../components/layout";
 import Login from "/components/login/login";
-import Register from "/components/register/register";
 import { useState } from "react";
 import Footer from "/components/footer/footer";
 

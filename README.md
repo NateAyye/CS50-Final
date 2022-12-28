@@ -1,9 +1,36 @@
 # Tip-Gro
 ## Video Demo:  <URL HERE>
 ## Description:
-  For this project, I have decided to use the Next.js framework in order to build my web application.
-  My web application was something that I had wanted to make and also would have liked to have in my day-to-day life.
-  For my web application I made a Tip Trascker for my Part Time job at a reasturant where most of my income is made with tips, So i made something in order to track my tips and how much i am making within a given week/month/etc..  
+  For this project, I have decided to use the Next.js framework which is built off of the React framework, with a PostgreSQL Backend hosted with supabase and the Prisma ORM to Access it in order to build my web application. Which is a framework for making web applications with javascript. Mainly known for its Component Structure Which allows you to Seperate your apps functionallity and Elements into "Components" allowing for easier read and distributed work.<br/>
+  &nbsp; &nbsp;The main reason I chose this framework is because of all the features that it has right out of the box. It comes already with its built in api and its built off of the React framework which allready adds so much. I kept hearing that Next.js was just react supercharged which sounded really nice for me and my use case.
+  &nbsp; &nbsp;My web application was something that I had wanted to make and also would have liked to have in my day-to-day life.
+  For my web application I made a Tip Tracker for my Part Time job at a reasturant where most of my income is made with tips, So i made something in order to track my tips and how much i am making within a given week/month/etc..  
+  <br/>
+  <br/>
+
+ ## Files & Folders
+
+ ### Next.js folder structure
+  the pages folder is the main website in that you can have dynamic routing by making folders within that folder and within the folder just created you add an index.js file and now that is the file pointed to when you call https://\<websiteUrl\>/\<foldername\>
+
+  &nbsp; &nbsp; In my project, I have a few folders and files that might need explaining:
+  - components - folder - contains all the components(Components: Code Seperated to make code cleaner and easier to read) that i needed in order to build my web application
+    - (footer, login, modal, profile) - folder - contains the \<foldername\>.js and the module css file for that component which has allowed me to make my base code look a lot better and now i can import these anywhere accross my whole project.
+    - layout.js - file - This is the consistent layout accross my whole app. I have variables that can be passed across the website so i can customize some things, such as the title of the navbar depending on which page i am on.
+    - layout.module.css - file - The styling for our layout in order for it to fit on all screens.
+  - lib - folder - contains the helper function for a my Prisma ORM( Object-Relational Mapping: Which allows me to make all the nescessary Queries on my database no matter what kind of database it is. )
+  - pages - folder - contains all the pages for my web application this is the root directory for my website. the index.js file in here is the root file for my website.
+    - api - folder - contains all the api routes for my application so i can call these client side and these files will handle my server code(querying databases, adding data, deleting data).
+      - events - folder - contains the api routes for getting the events corresponding to the user and also a handles adding events.
+        - addEvent.js - file - The handeler function for adding events into my supabase event database.
+        - index.js - file - The handeler function for grabbing all the events in my database that are related to the user that is logged in.
+    - _app.js - file - This is Technically the base file for my application so i can add global styling in here to take effect over the whole application.
+    - calendar.js - file - This is the file that has the calendar component that I got from an NPM package called react-big-calendar which has enough customizablity for me to do what I'd like with it.
+    - index.js - file - The root file for my website which has the login component which checks if their is a session and will log you in if you do but if their is no session then it will prompt you to the login/Register form.
+  - prisma - folder - holds the schemas from my supabase database for prisma so that it can access the data properly and also autofill correctly.
+  - public - folder - Holds all the public images and icons for my website to look good.
+  - styles - folder - contains all the styles made for my application(mainly made for my global CSS styles).
+  - utils - folder - contains a file (supabase.js) that has a helper function for conectting to the supabase api if I ever needed it.
 
 
 ## Create Your Own:
