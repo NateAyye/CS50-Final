@@ -4,7 +4,7 @@
 
 # Tip-Gro
 
-## Video Demo:  <URL HERE>
+## Video Demo:  [Video URL (Youtube)](https://youtu.be/aVHR65VB8Zw)
 # Description:
   For this project, I have decided to use the Next.js framework which is built off of the React framework, with a PostgreSQL Backend hosted with supabase and the Prisma ORM to Access it in order to build my web application. Which is a framework for making web applications with javascript. Mainly known for its Component Structure Which allows you to Seperate your apps functionallity and Elements into "Components" allowing for easier read and distributed work.<br/>
   &nbsp; &nbsp;The main reason I chose this framework is because of all the features that it has right out of the box. It comes already with its built in api and its built off of the React framework which allready adds so much. I kept hearing that Next.js was just react supercharged which sounded really nice for me and my use case.
