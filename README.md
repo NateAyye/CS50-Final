@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../tip-tracker/public/README_images/README-Legend-Image-CS50Final.png"/>
+  <img src="https://github.com/NateAyye/CS50-Final/blob/main/public/README_images/README-Legend-Image-CS50Final.png?raw=true"/>
 </div>
 
 # Tip-Gro
